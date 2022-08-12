@@ -64,8 +64,6 @@ class Contract < ApplicationRecord
   end
 
   def create_turns
-    puts 'create_grid_of_contract'
-    byebug
-    Turns::GenerateTurnsService.new(self).create
+    Turns::GenerateTurnsService.new(self).create!
   end
 end
