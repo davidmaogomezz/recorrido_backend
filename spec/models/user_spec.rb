@@ -21,6 +21,7 @@
 #  provider               :string           default("email"), not null
 #  uid                    :string           default(""), not null
 #  tokens                 :json
+#  role                   :integer
 #
 # Indexes
 #
@@ -76,6 +77,67 @@ describe User do
       it 'returns the given user' do
         expect(User.from_social_provider('provider', params))
           .to eq(user)
+      end
+    end
+  end
+
+  context 'when user is created with an role' do
+    describe 'when is created as admin' do
+      let!(:user) { create(:user, role: User.roles[:admin]) }
+
+      it 'return admin' do
+        expect(user.role).to eq('admin')
+      end
+
+      it 'return the correct value' do
+        expect(user.role_before_type_cast).to eq(User.roles[:admin])
+      end
+    end
+    describe 'when is created as expert' do
+      let!(:user) { create(:user, role: User.roles[:expert]) }
+
+      it 'return expert' do
+        expect(user.role).to eq('expert')
+      end
+
+      it 'return the correct value' do
+        expect(user.role_before_type_cast).to eq(User.roles[:expert])
+      end
+    end
+    describe 'when is created as client' do
+      let!(:user) { create(:user, role: User.roles[:client]) }
+
+      it 'return client' do
+        expect(user.role).to eq('client')
+      end
+
+      it 'return the correct value' do
+        expect(user.role_before_type_cast).to eq(User.roles[:client])
+      end
+    end
+  end
+
+  context 'check methods contracts' do
+    describe '.requested_contracts' do
+      let!(:user_admin) { create(:user, role: User.roles[:admin]) }
+      let!(:user_expert) { create(:user, role: User.roles[:expert]) }
+      let!(:user_client) { create(:user, role: User.roles[:client]) }
+
+      it 'return an array blank' do
+        expect(user_admin.requested_contracts).to eq([])
+        expect(user_expert.requested_contracts).to eq([])
+        expect(user_client.requested_contracts).to eq([])
+      end
+    end
+    describe '.accepted_contracts' do
+      let!(:user_admin) { create(:user, role: User.roles[:admin]) }
+      let!(:user_expert) { create(:user, role: User.roles[:expert]) }
+      let!(:user_client) { create(:user, role: User.roles[:client]) }
+
+      it 'return an array blank' do
+        expect(user_admin.accepted_contracts).to eq([])
+        expect(user_expert.accepted_contracts).to eq([])
+        expect(user_client.accepted_contracts).to eq([])
       end
     end
   end
