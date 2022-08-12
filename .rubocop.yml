@@ -28,6 +28,12 @@ Rails/Delegate:
   Exclude:
     - app/controllers/api/concerns/act_as_api_request.rb
 
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
+Rails/InverseOf:
+  Enabled: false
+
 Rails/LexicallyScopedActionFilter:
   Exclude:
     - app/controllers/api/v1/api_controller.rb
