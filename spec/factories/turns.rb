@@ -15,7 +15,11 @@
 #  index_turns_on_contract_id  (contract_id)
 #  index_turns_on_user_id      (user_id)
 #
-class Turn < ApplicationRecord
-  belongs_to :contract
-  belongs_to :user, optional: true
+FactoryBot.define do
+  factory :turn do
+    contract { FactoryBot.create(:contract) }
+    date_hour { Faker::Date.between(from: '2022-08-12 00:00', to: '2022-08-12 23:59') }
+    availables { '' }
+    user { nil }
+  end
 end

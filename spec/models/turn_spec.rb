@@ -15,7 +15,14 @@
 #  index_turns_on_contract_id  (contract_id)
 #  index_turns_on_user_id      (user_id)
 #
-class Turn < ApplicationRecord
-  belongs_to :contract
-  belongs_to :user, optional: true
+require 'rails_helper'
+
+RSpec.describe Turn, type: :model do
+  let!(:turn) { create(:turn) }
+
+  context 'create a turn from factory with data valid' do
+    it 'contract is an instance of turn' do
+      expect(turn.class).to eq(Turn)
+    end
+  end
 end
