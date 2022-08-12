@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_11_151322) do
+ActiveRecord::Schema.define(version: 2022_08_12_171329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -119,6 +119,17 @@ ActiveRecord::Schema.define(version: 2022_08_11_151322) do
     t.index ["key"], name: "index_settings_on_key", unique: true
   end
 
+  create_table "turns", force: :cascade do |t|
+    t.bigint "contract_id", null: false
+    t.datetime "date_hour"
+    t.string "availables"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["contract_id"], name: "index_turns_on_contract_id"
+    t.index ["user_id"], name: "index_turns_on_user_id"
+  end
+
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "email"
     t.string "encrypted_password", default: "", null: false
@@ -147,4 +158,6 @@ ActiveRecord::Schema.define(version: 2022_08_11_151322) do
   add_foreign_key "contracts", "users", column: "accepted_by_id"
   add_foreign_key "contracts", "users", column: "requested_by_id"
   add_foreign_key "exception_hunter_errors", "exception_hunter_error_groups", column: "error_group_id"
+  add_foreign_key "turns", "contracts"
+  add_foreign_key "turns", "users"
 end

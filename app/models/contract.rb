@@ -24,6 +24,8 @@
 class Contract < ApplicationRecord
   ALLOWED_HOURS = 0.upto(23).map { |i| "#{i}:00" }
 
+  has_many :turns, dependent: :destroy
+
   belongs_to :requested_by, class_name: 'User'
   belongs_to :accepted_by, class_name: 'User', optional: true
 
@@ -34,16 +36,16 @@ class Contract < ApplicationRecord
 
   validate :end_date_greater_or_equal_to_start_date?
 
-  validates :start_wday, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 6 }
+  validates :start_wday, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 7 }
 
   validates :start_hour, :end_hour, inclusion: ALLOWED_HOURS
 
   validate :end_hour_greater_or_equal_to_start_hour?
 
   validates :end_wday, numericality: { greater_than_or_equal_to: :start_wday,
-                                       less_than_or_equal_to: 6 }
+                                       less_than_or_equal_to: 7 }
 
-  after_update :create_grid_of_contract, if: %i[can_create_grid?]
+  after_update :create_turns, if: %i[can_create_turns?]
 
   def end_date_greater_or_equal_to_start_date?
     return unless end_date < start_date
@@ -57,11 +59,13 @@ class Contract < ApplicationRecord
     errors.add(:end_hour, 'must be greather than or equal to start hour')
   end
 
-  def can_create_grid?
-    state == Contract.states.keys[1] # && number_grids.zero?
+  def can_create_turns?
+    state == Contract.states.keys[1] && turns.zero?
   end
 
-  def create_grid_of_contract
+  def create_turns
     puts 'create_grid_of_contract'
+    byebug
+    Turns::GenerateTurnsService.new(self).create
   end
 end

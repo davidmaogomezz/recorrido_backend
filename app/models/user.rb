@@ -49,6 +49,8 @@ class User < ApplicationRecord
   has_many :accepted_contracts, class_name: 'Contract',
                                 foreign_key: 'accepted_by_id'
 
+  has_many :turns, dependent: :destroy
+
   def full_name
     return username if first_name.blank?
 
