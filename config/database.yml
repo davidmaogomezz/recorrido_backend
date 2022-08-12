@@ -10,11 +10,11 @@ default: &default
 
 development:
  <<: *default
- database: gymstructor_back_development
+ database: recorrido_backend_development
 
 test:
  <<: *default
- database: gymstructor_back_test
+ database: recorrido_backend_test
 
 production:
  <<: *default
