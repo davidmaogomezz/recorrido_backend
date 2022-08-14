@@ -64,6 +64,6 @@ class Contract < ApplicationRecord
   end
 
   def create_turns
-    Turns::GenerateTurnsService.new(self).create!
+    Turns::GenerateTurnsService.new(self).create
   end
 end
