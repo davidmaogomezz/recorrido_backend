@@ -60,7 +60,7 @@ class Contract < ApplicationRecord
   end
 
   def can_create_turns?
-    state == Contract.states.keys[1] && turns.zero?
+    state == Contract.states.keys[1] && turns.size.zero?
   end
 
   def create_turns
