@@ -31,7 +31,7 @@ RSpec.describe Turn, type: :model do
     end
 
     it 'update user, field user is an instance of user' do
-      turn.update(user_id: user.id)
+      turn.update!(user_id: user.id)
       expect(turn.user.class).to eq(User)
     end
   end

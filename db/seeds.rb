@@ -5,10 +5,10 @@ if Rails.env.development?
   contract = Contract.create!(name: 'Mi empresita prueba',
                               start_date: '2022-08-12',
                               end_date: '2022-08-31',
-                              start_wday: rand(1..4),
-                              start_hour: Contract::ALLOWED_HOURS.each_slice(12).to_a.first.sample,
-                              end_hour: Contract::ALLOWED_HOURS.each_slice(12).to_a.last.sample,
-                              end_wday: rand(5..7),
+                              start_wday: 2,
+                              start_hour: '6:00',
+                              end_hour: '15:00',
+                              end_wday: 6,
                               requested_by_id: User.where(role: 2).first.id)
   contract.update!(accepted_by_id: User.where(role: 1).first.id, state: Contract.states[:accepted])
 end

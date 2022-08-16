@@ -49,8 +49,8 @@ RSpec.describe Contract, type: :model do
       expect(contract.start_hour.class).to eq(String)
     end
     it 'start_wday, end_wday are between 1 and 7' do
-      expect(contract.start_wday).to be_between(1, 7)
-      expect(contract.end_wday).to be_between(1, 7)
+      expect(contract.start_wday).to be_between(0, 6)
+      expect(contract.end_wday).to be_between(0, 6)
     end
     it 'end_wday is greater_than_or_equal_to start_wday' do
       expect(contract.end_wday).to be >= contract.start_wday

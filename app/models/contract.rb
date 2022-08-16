@@ -36,14 +36,14 @@ class Contract < ApplicationRecord
 
   validate :end_date_greater_or_equal_to_start_date?
 
-  validates :start_wday, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 7 }
+  validates :start_wday, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 6 }
 
   validates :start_hour, :end_hour, inclusion: ALLOWED_HOURS
 
   validate :end_hour_greater_or_equal_to_start_hour?
 
   validates :end_wday, numericality: { greater_than_or_equal_to: :start_wday,
-                                       less_than_or_equal_to: 7 }
+                                       less_than_or_equal_to: 6 }
 
   after_update :create_turns, if: %i[can_create_turns?]
 
@@ -64,6 +64,6 @@ class Contract < ApplicationRecord
   end
 
   def create_turns
-    Turns::GenerateTurnsService.new(self).create
+    Turns::GenerateTurnsService.new(self).generate
   end
 end

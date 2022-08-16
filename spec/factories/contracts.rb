@@ -24,12 +24,12 @@
 FactoryBot.define do
   factory :contract do
     name { Faker::Name.unique.name }
-    start_date { Faker::Date.between(from: '2022-08-12', to: '2022-08-12') }
-    end_date { Faker::Date.between(from: '2022-08-12', to: '2022-12-31') }
-    start_wday { rand(1..4) }
-    start_hour { Contract::ALLOWED_HOURS.each_slice(12).to_a.first.sample }
-    end_hour { Contract::ALLOWED_HOURS.each_slice(12).to_a.last.sample }
-    end_wday { rand(5..7) }
+    start_date { '2022-08-12' }
+    end_date { '2022-08-31' }
+    start_wday { 0 }
+    start_hour { '0:00' }
+    end_hour { '23:00' }
+    end_wday { 6 }
     requested_by { FactoryBot.create(:user, role: User.roles[:client]) }
     accepted_by { FactoryBot.create(:user, role: User.roles[:admin]) }
   end
