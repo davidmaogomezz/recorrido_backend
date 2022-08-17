@@ -20,6 +20,8 @@ Rails.application.routes.draw do
       end
       resources :turns, only: %i[index]
       resources :contracts, only: %i[index]
+      resources :contracts, only: %i[index]
+      resources :users, only: %i[index]
     end
   end
 end
