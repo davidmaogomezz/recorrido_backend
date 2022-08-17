@@ -3,7 +3,7 @@ module Turns
     attr_reader :params, :availables, :operation
 
     def initialize(turn, params)
-      @params = params
+      @params = params[:object_turn]
       @availables = turn&.availables&.split(',') || []
       @operation = params[:operation]
     end
