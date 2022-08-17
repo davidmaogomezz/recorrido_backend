@@ -18,7 +18,7 @@ Rails.application.routes.draw do
       resources :settings, only: [] do
         get :must_update, on: :collection
       end
-      resources :turns, only: %i[index]
+      resources :turns, only: %i[index update]
       resources :contracts, only: %i[index]
       resources :contracts, only: %i[index]
       resources :users, only: %i[index]
