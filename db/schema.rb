@@ -144,6 +144,7 @@ ActiveRecord::Schema.define(version: 2022_08_12_171329) do
     t.string "first_name", default: ""
     t.string "last_name", default: ""
     t.string "username", default: ""
+    t.string "color", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "provider", default: "email", null: false

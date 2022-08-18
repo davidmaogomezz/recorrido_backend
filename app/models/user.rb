@@ -16,6 +16,7 @@
 #  first_name             :string           default("")
 #  last_name              :string           default("")
 #  username               :string           default("")
+#  color                  :string           default("")
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  provider               :string           default("email"), not null
@@ -41,6 +42,8 @@ class User < ApplicationRecord
 
   before_validation :init_uid
 
+  after_create :set_color
+
   enum role: { admin: 0, expert: 1, client: 2 }
 
   has_many :requested_contracts, class_name: 'Contract',
@@ -62,6 +65,11 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0, 20]
       user.assign_attributes user_params.except('id')
     end
+  end
+
+  def set_color
+    color = "%06x" % (rand * 0xffffff)
+    update(color: "##{color}")
   end
 
   private
