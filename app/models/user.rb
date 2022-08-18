@@ -68,8 +68,12 @@ class User < ApplicationRecord
   end
 
   def set_color
-    color = "%06x" % (rand * 0xffffff)
-    update(color: "##{color}")
+    color = format('%06x', (rand * 0xffffff))
+    update!(color: "##{color}")
+  end
+
+  def self.experts
+    User.where(role: User.roles[:expert])
   end
 
   private
