@@ -1,9 +1,14 @@
 if Rails.env.development?
-  User.create!(email: 'admin@mail.com', password: '12345678', first_name: 'David', role: User.roles[:admin])
-  User.create!(email: 'expert1@mail.com', password: '12345678', first_name: 'Benjamín', role: User.roles[:expert])
-  User.create!(email: 'expert2@mail.com', password: '12345678', first_name: 'Bárbara', role: User.roles[:expert])
-  User.create!(email: 'expert3@mail.com', password: '12345678', first_name: 'Ernesto', role: User.roles[:expert])
-  User.create!(email: 'client@mail.com', password: '12345678', first_name: 'Oscar', role: User.roles[:client])
+  User.create!(email: 'admin@mail.com', password: '12345678', first_name: 'David',
+               role: User.roles[:admin])
+  User.create!(email: 'expert1@mail.com', password: '12345678', first_name: 'Benjamín',
+               role: User.roles[:expert])
+  User.create!(email: 'expert2@mail.com', password: '12345678', first_name: 'Bárbara',
+               role: User.roles[:expert])
+  User.create!(email: 'expert3@mail.com', password: '12345678', first_name: 'Ernesto',
+               role: User.roles[:expert])
+  User.create!(email: 'client@mail.com', password: '12345678', first_name: 'Oscar',
+               role: User.roles[:client])
   contract = Contract.create!(name: 'Mi empresita prueba',
                               start_date: '2022-08-12',
                               end_date: '2022-08-31',
