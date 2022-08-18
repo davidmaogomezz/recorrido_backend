@@ -2,7 +2,7 @@ module Api
   module V1
     class TurnsController < Api::V1::ApiController
       before_action :authenticate_user!
-      after_action :verify_policy_scoped, except: %i[index]
+      before_action :set_turn, only: %i[update]
 
       def index
         turns = Turns::SearchTurnsService.new(params).search
