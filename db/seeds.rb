@@ -15,8 +15,8 @@ if Rails.env.development?
                                   start_date: '2022-08-12',
                                   end_date: '2022-08-31',
                                   start_wday: 2,
-                                  start_hour: '6:00',
-                                  end_hour: '15:00',
+                                  start_hour: '0:00',
+                                  end_hour: '23:00',
                                   end_wday: 6,
                                   requested_by_id: client_one.id)
   contract_two = Contract.create!(name: 'Recorrido 2',
