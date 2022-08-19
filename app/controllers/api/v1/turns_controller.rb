@@ -5,7 +5,9 @@ module Api
       before_action :set_turn, only: %i[update]
 
       def index
-        @turns = Turns::SearchTurnsService.new(params).search
+        search_turns = Turns::SearchTurnsService.new(params).search
+        @turns = search_turns[:turns]
+        @range_time = search_turns[:range_time]
       rescue StandardError => e
         render json: { message: e.message }, status: :error
       end
