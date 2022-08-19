@@ -19,9 +19,7 @@ module Experts
     end
 
     def calculate_load(turn)
-      cweek = turn.date_hour.strftime('%-V').to_i
-      start_week = calculate_start_week(turn.date_hour.year, cweek)
-      end_week = start_week + 6.days
+      start_week = calculate_start_week(turn)
       end_week = start_week.end_of_week
       object_load = []
       users.each do |user|
@@ -32,8 +30,12 @@ module Experts
       []
     end
 
-    def calculate_start_week(year, cweek)
-      Date.parse("#{year}W#{cweek}")
+    def calculate_cweek(turn)
+      turn.date_hour.strftime('%-V').to_i
+    end
+
+    def calculate_start_week(turn)
+      Date.parse("#{turn.date_hour.year}W#{calculate_cweek(turn)}")
     end
 
     def extract_cweek(turn)
