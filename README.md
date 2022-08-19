@@ -3,6 +3,8 @@
 1. Clonar este repositorio
 1. Instalar PostgreSQL
 1. En la raíz del proyecto ejecutar `bootstrap.sh` junto con el nombre el proyecto `./bootstrap.sh recorrido_backend`
+1. crear variables de entorno `export DB_NAME=recorrido_backend` `export DB_USER=` `export DB_PASSWROD=`
+1. rubocop -A && rspec -f d
 1. `rails s`
 
 Este proyecto fue creado partiendo de [rails api base](https://github.com/rootstrap/rails_api_base)
