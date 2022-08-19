@@ -1,20 +1,20 @@
 default: &default
-  adapter: postgresql
-  encoding: unicode
-  pool: 5
-  username:
-  password:
-  # If you using docker the host should be "db"
-  host: localhost
-  port: 5432
+    adapter: postgresql
+    encoding: unicode
+    host: <%= ENV['DB_HOST'] || "localhost" %>
+    port: <%= ENV['DB_PORT'] || 5432 %>
+    username: <%= ENV['DB_USER'] %>
+    password: <%= ENV['DB_PASS'] %>
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
 
 development:
- <<: *default
- database: recorrido_backend_development
-
+    <<: *default
+    database: <%= ENV['DB_NAME'] %>_development
+    timeout: 5000
 test:
- <<: *default
- database: recorrido_backend_test
+    <<: *default
+    database: <%= ENV['DB_NAME'] %>_test
 
 production:
  <<: *default

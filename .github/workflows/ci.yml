@@ -11,7 +11,7 @@ jobs:
     env:
       DB_USER: postgres
       DB_PASS: postgres
-      DB_NAME: global
+      DB_NAME: recorrido_backend
       REDIS_URL: redis://127.0.0.1:6379/1
 
     steps:
@@ -29,7 +29,7 @@ jobs:
       uses: Harmon758/postgresql-action@v1.0.0
       with:
         postgresql version: 10
-        postgresql db: global
+        postgresql db: recorrido_backend
         postgresql user: postgres
         postgresql password: postgres
 
