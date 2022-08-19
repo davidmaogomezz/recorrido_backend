@@ -7,6 +7,8 @@
 
 Este proyecto fue creado partiendo de [rails api base](https://github.com/rootstrap/rails_api_base)
 
+# Modelo entidad relación
+
 ![modelo entidad relación](https://res.cloudinary.com/job-run/image/upload/v1660882522/Captura_de_Pantalla_2022-08-18_a_la_s_11.14.43_p._m._qyn3mu.png)
 
 Tenemos 3 tipos de usuarios:
@@ -34,3 +36,16 @@ Tenemos 3 tipos de usuarios:
  3. Si se encuentra que todos los expertos disponibles para un turno tienen la misma carga laboral la asignación se hace de manera aleatoria. 
  4. Si faltando una hora para que el turno entre en vigencia el turno no tiene ningún experto marcado como disponible se ejecuta un rake task que asigna el turno según la logica mencionada en los literales 2 y 3.
 
+ # Este proyecto se puede ver en funcionamiento en [recorrido-front](https://recorrido-front.onrender.com/)
+
+Se puede ingresar con cualquiera de los siguientes usuarios
+
+| email            | contraseña | role  |
+|:----------------:|------------|-------|
+| admin@mail.com   | 12345678   | Admin |
+| expert1@mail.com | 12345678   | Expert|
+| expert2@mail.com | 12345678   | Expert|
+| expert3@mail.com | 12345678   | Expert|
+| client1@mail.com | 12345678   | Expert|
+| client2@mail.com | 12345678   | Expert|
+| client3@mail.com | 12345678   | Expert|
