@@ -11,7 +11,7 @@ if Rails.env.development?
                             role: User.roles[:client])
   client_two = User.create!(email: 'client2@mail.com', password: '12345678', first_name: 'Oscar',
                             role: User.roles[:client])
-  contract_one = Contract.create!(name: 'Recorrid 1',
+  contract_one = Contract.create!(name: 'Recorrido 1',
                                   start_date: '2022-08-12',
                                   end_date: '2022-08-31',
                                   start_wday: 2,
@@ -19,12 +19,12 @@ if Rails.env.development?
                                   end_hour: '15:00',
                                   end_wday: 6,
                                   requested_by_id: client_one.id)
-  contract_two = Contract.create!(name: 'Recorrid 2',
-                                  start_date: '2022-08-19',
+  contract_two = Contract.create!(name: 'Recorrido 2',
+                                  start_date: '2022-08-15',
                                   end_date: '2022-08-31',
                                   start_wday: 0,
-                                  start_hour: '0:00',
-                                  end_hour: '23:00',
+                                  start_hour: '7:00',
+                                  end_hour: '13:00',
                                   end_wday: 6,
                                   requested_by_id: client_two.id)
   contract_one.update!(accepted_by_id: User.where(role: 1).first.id,
