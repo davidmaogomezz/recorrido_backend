@@ -16,10 +16,6 @@ module App
 
     config.add_autoload_paths_to_load_path = false
 
-    config.time_zone = 'Santiago'
-    config.active_record.default_timezone = :local
-    config.active_record.time_zone_aware_types = [:datetime]
-
     ActionMailer::Base.smtp_settings = {
       address: 'smtp.sendgrid.net',
       authentication: :plain,
