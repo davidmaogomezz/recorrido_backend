@@ -13,7 +13,9 @@ module Api
       def update
         availables = Turns::MakeAvailablesService.new(@turn, params).make
         if @turn.update(availables: availables)
-          @turn = Turns::AssignService.new(@turn).assign if Turns::AvailabilityService.new(@turn).complete?
+          if Turns::AvailabilityService.new(@turn).complete?
+            @turn = Turns::AssignService.new(@turn).assign
+          end
         else
           render json: { message: @turn.errors }, status: :error
         end

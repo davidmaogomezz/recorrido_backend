@@ -7,16 +7,29 @@ if Rails.env.development?
                role: User.roles[:expert])
   User.create!(email: 'expert3@mail.com', password: '12345678', first_name: 'Ernesto',
                role: User.roles[:expert])
-  User.create!(email: 'client@mail.com', password: '12345678', first_name: 'Oscar',
-               role: User.roles[:client])
-  contract = Contract.create!(name: 'Mi empresita prueba',
-                              start_date: '2022-08-12',
-                              end_date: '2022-08-31',
-                              start_wday: 2,
-                              start_hour: '6:00',
-                              end_hour: '15:00',
-                              end_wday: 6,
-                              requested_by_id: User.where(role: 2).first.id)
-  contract.update!(accepted_by_id: User.where(role: 1).first.id, state: Contract.states[:accepted])
+  client_one = User.create!(email: 'client1@mail.com', password: '12345678', first_name: 'Oscar',
+                            role: User.roles[:client])
+  client_two = User.create!(email: 'client2@mail.com', password: '12345678', first_name: 'Oscar',
+                            role: User.roles[:client])
+  contract_one = Contract.create!(name: 'Recorrid 1',
+                                  start_date: '2022-08-12',
+                                  end_date: '2022-08-31',
+                                  start_wday: 2,
+                                  start_hour: '6:00',
+                                  end_hour: '15:00',
+                                  end_wday: 6,
+                                  requested_by_id: client_one.id)
+  contract_two = Contract.create!(name: 'Recorrid 2',
+                                  start_date: '2022-08-19',
+                                  end_date: '2022-08-31',
+                                  start_wday: 0,
+                                  start_hour: '0:00',
+                                  end_hour: '23:00',
+                                  end_wday: 6,
+                                  requested_by_id: client_two.id)
+  contract_one.update!(accepted_by_id: User.where(role: 1).first.id,
+                       state: Contract.states[:accepted])
+  contract_two.update!(accepted_by_id: User.where(role: 1).first.id,
+                       state: Contract.states[:accepted])
 end
 Setting.create_or_find_by!(key: 'min_version', value: '0.0')

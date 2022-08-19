@@ -24,7 +24,9 @@ module Experts
       end_week = start_week + 6.days
       end_week = start_week.end_of_week
       object_load = []
-      users.each { |user| object_load << { user: user, load: user.turns.where(date_hour: start_week..end_week).size } }
+      users.each do |user|
+        object_load << { user: user, load: user.turns.where(date_hour: start_week..end_week).size }
+      end
       object_load
     rescue StandardError => _e
       []

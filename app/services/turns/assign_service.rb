@@ -9,13 +9,13 @@ module Turns
     end
 
     def assign
-      lower_value = object_load.pluck(:load).sort.first
+      lower_value = object_load.pluck(:load).min
       users_with_minus_load = object_load.select { |user_load| user_load[:load] == lower_value }
       user = users_with_minus_load.sample[:user]
-      turn.update(user_id: user.id)
+      turn.update!(user_id: user.id)
       turn.reload
     rescue StandardError => _e
-      turn.update(user_id: @experts_availables.show_ids.sample)
+      turn.update!(user_id: @experts_availables.show_ids.sample)
     end
   end
 end
